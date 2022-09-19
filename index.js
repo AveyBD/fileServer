@@ -3,7 +3,7 @@ const cors = require("cors");
 require("dotenv").config();
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const app = express();
-const port = process.env.PORT || 5001;
+const port = process.env.PORT || 5000;
 
 // middleware
 app.use(cors());
@@ -22,14 +22,14 @@ async function run() {
   try {
     await client.connect();
     console.log("MongoDB Connected");
-    const projectsCollection = client.db("IssueTrack").collection("projects");
+    const fileCollection = client.db("FileApp").collection("files");
   } finally {
   }
 }
 run().catch(console.dir);
 
 app.get("/", (req, res) => {
-  res.send("Hello Issue Tracker!");
+  res.send("Hello Issue File App!");
 });
 
 app.listen(port, () => {
